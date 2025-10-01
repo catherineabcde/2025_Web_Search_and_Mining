@@ -6,18 +6,37 @@ Given 7874 English News:
 """
 # 1. remove stopwords and indexing
 import VectorSpace as vs
+import Parser
 import os
 
-env_path = "./EnglishNews/"
-eng_txts = [f for f in os.listdir(env_path) if f.endswith(".txt")]
 
-for txt in range(len(eng_txts)):
+eng_path = "./EnglishNews/"
+eng_txts = [f for f in os.listdir(eng_path) if f.endswith(".txt")]
+eng_docs = []
 
-    f = open(env_path + eng_txts[txt], "r+")
-    tokens = parser.tokenise(f)
-    f = parser.removeStopWords(tokens)
-    stemmer = PorterStemmer()
-    stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+for txt in eng_txts:
+    file_path = os.path.join(eng_path, txt)
+    with open(file_path, "r+") as f:
+        text = f.read()
+        eng_docs.append(text)
     f.close()
 
+eng_vs = vs.VectorSpace(eng_docs)
+print("how many documents are there?", len(eng_vs.documentVectors))
+print("how many words are there?", len(eng_vs.vectorKeywordIndex))
+
+
+
+
+
+
+
+
+
 # 2. Transfer queries into vector
+
+
+
+
+
+
