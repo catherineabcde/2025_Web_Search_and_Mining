@@ -42,16 +42,15 @@ class VectorSpace:
         vocabularyList = self.parser.tokenise(vocabularyString)
         #Remove common words which have no search value
         vocabularyList = self.parser.removeStopWords(vocabularyList)
-        # uniqueVocabularyList = util.removeDuplicates(vocabularyList) ### 我想求 term frequency 應該不能刪掉重複的字？
+        uniqueVocabularyList = util.removeDuplicates(vocabularyList) 
 
         vectorIndex={}
         offset=0
         #Associate a position with the keywords which maps to the dimension on the vector used to represent this word
-        # for word in uniqueVocabularyList:
-        for word in vocabularyList:
+        for word in uniqueVocabularyList:
             vectorIndex[word]=offset
             offset+=1
-        return vectorIndex  #(keyword:position)
+        return vectorIndex  #(keyword:position) indexing!
 
 
     def makeVector(self, wordString):
